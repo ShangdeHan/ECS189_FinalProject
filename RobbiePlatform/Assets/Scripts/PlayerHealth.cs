@@ -11,7 +11,6 @@ public class PlayerHealth : MonoBehaviour
     {
         trapsLayer = LayerMask.NameToLayer("Traps");
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == trapsLayer)
@@ -22,5 +21,18 @@ public class PlayerHealth : MonoBehaviour
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             GameManager.PlayerDied();
         }
+        if (collision.tag == "Nextlevel")
+        {
+            Invoke("Restart", 2f);
+        }
+        if (collision.tag == "final")
+        {    
+        }
+    }
+
+
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }
